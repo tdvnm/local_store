@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@font-face { font-family: 'Archia'; src: url('/archia/archia-regular-webfont.woff2') format('woff2'), url('/archia/archia-regular-webfont.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Archia'; src: url('/archia/archia-medium-webfont.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Archia'; src: url('/archia/archia-semibold-webfont.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Archia'; src: url('/archia/archia-bold-webfont.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+
+:root {
+  --c-periwinkle: #c6d4ff;
+  --c-lavender: #7a82ab;
+  --c-pine: #307473;
+  --c-emerald: #12664f;
+  --c-cyan: #2dc2bd;
+  --c-bg: #f2f3f5;
+}
+
+@theme inline {
+  --color-background: var(--c-bg);
+  --color-foreground: #1f2328;
+  --font-sans: 'Archia', system-ui, sans-serif;
+}
+
+body {
+  background: linear-gradient(165deg, #f2f3f5 0%, #eef1f8 50%, #f2f3f5 100%);
+  min-height: 100vh;
+  color: #1f2328;
+  font-family: 'Archia', system-ui, sans-serif;
+}
+
+/* ── Cards ── */
+.card {
+  background: linear-gradient(180deg, #ffffff 0%, #fcfcfd 100%);
+  border-radius: 0.75rem;
+  box-shadow:
+    inset 0 1px 1px 0 rgba(198, 212, 255, 0.8),
+    0 6px 14px -4px rgba(18, 102, 79, 0.18),
+    0 1px 3px 0 rgba(18, 102, 79, 0.08);
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: linear-gradient(180deg, #1a7a5e 0%, #12664f 100%);
+  color: white;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255,255,255,0.15),
+    0 4px 10px -3px rgba(18, 102, 79, 0.35);
+}
+.btn-primary:hover { background: linear-gradient(180deg, #1e8a6a 0%, #157558 100%); }
+
+.btn-ghost {
+  background: linear-gradient(180deg, #f0f2ff 0%, #e8ecff 100%);
+  color: var(--c-emerald);
+  border: 1px solid var(--c-periwinkle);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255,255,255,0.9),
+    0 2px 6px -2px rgba(18, 102, 79, 0.1);
+}
+.btn-ghost:hover { background: linear-gradient(180deg, #e8ecff 0%, #dde3ff 100%); }
+
+.btn-danger {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+.btn-danger:hover { background: #fee2e2; }
+
+.btn-muted {
+  background: #f4f4f5;
+  color: #52525b;
+}
+
+/* ── Qty stepper ── */
+.qty-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, #1a7a5e 0%, #12664f 100%);
+  border-radius: 0.5rem;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255,255,255,0.12),
+    0 4px 10px -3px rgba(18, 102, 79, 0.35);
+}
+.qty-stepper button {
+  padding: 0 0.75rem;
+  height: 100%;
+  color: white;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: transform 0.1s;
+}
+.qty-stepper button:active { transform: scale(0.88); }
+.qty-stepper span { color: white; font-weight: 600; }
+
+/* ── Inputs ── */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e4e4e7;
+  background: white;
+  font-size: 0.875rem;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--c-cyan);
+  box-shadow: 0 0 0 3px rgba(45, 194, 189, 0.15);
+}
+
+/* ── Pills ── */
+.pill {
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.pill-active {
+  background: linear-gradient(180deg, #1a7a5e 0%, #12664f 100%);
+  color: white;
+  box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.12), 0 2px 6px -2px rgba(18,102,79,0.25);
+}
+.pill-inactive {
+  background: white;
+  color: #52525b;
+  border: 1px solid #e4e4e7;
+}
+.pill-inactive:hover { border-color: #a1a1aa; }
+
+/* ── Badge ── */
+.badge {
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* ── Header ── */
+.header {
+  background: linear-gradient(180deg, #157558 0%, #12664f 100%);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 1px 3px rgba(18, 102, 79, 0.2);
+}
+
+/* ── Frosted bar ── */
+.frosted {
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.frosted-dark {
+  background: rgba(18, 102, 79, 0.88);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-top: 1px solid rgba(45, 194, 189, 0.15);
+}
+
+/* ── Color utilities (kept minimal) ── */
+.text-price { color: var(--c-emerald); }
+.text-accent { color: var(--c-emerald); }
+.text-paid { color: var(--c-emerald); }
+
+/* ── Animations ── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.animate-in { animation: fade-in 0.25s ease-out both; }
+.animate-slide-up { animation: slide-up 0.25s ease-out both; }
+
+/* ── Bottom nav safe area ── */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* ── Print styles ── */
+@media print {
+  .header, .frosted, .frosted-dark, nav, .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  body { background: white !important; }
+  .card { box-shadow: none !important; border: 1px solid #e4e4e7; }
+}

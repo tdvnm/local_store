@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lucky Store
 
-## Getting Started
+A grocery store platform connecting buyers and sellers with real-time order management, flexible delivery options, and monthly tab billing.
 
-First, run the development server:
+## Setup
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the URL shown in the terminal (usually `http://localhost:5173`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The database (SQLite) and seed data are created automatically on first run — no setup needed.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Usage
 
-## Learn More
+1. You'll land on the **login page** — enter any flat number (e.g. `A-101`) to log in with a seeded user, or enter a new one to register
+2. Browse products, add to cart, place orders
+3. Use the bottom nav to access **Routines**, **Orders**, and **Tab**
+4. Admin dashboard is at `/admin`
 
-To learn more about Next.js, take a look at the following resources:
+## Build & Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+node build/index.js
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Set `PORT` env var to change the default port (3000):
 
-## Deploy on Vercel
+```bash
+PORT=8080 node build/index.js
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- SvelteKit + Svelte 5
+- SQLite (better-sqlite3)
+- Tailwind CSS v4
+- Archia font (self-hosted)
+
+---
+
+## Features
+
+### Buyer
+- Browse & search products with category filters
+- Favourites (heart toggle, filter by favourites)
+- Cart with delivery mode: **Urgent** / **Scheduled** / **Pickup**
+- Payment: **Cash on Delivery** or **Monthly Tab**
+- Order history & live status tracking
+- Recurring orders (Routines)
+- Print receipts
+
+### Seller
+- Inventory management (name, price, company, category, stock mode)
+- Stock modes: **known quantity** (auto-deducts) or **infinite** (requires confirmation)
+- Order dashboard with status updates (packed, out for delivery, ready for pickup)
+- Percentage discounts
+- Role management (seller, delivery boy)
+- Monthly tab tracking
