@@ -20,6 +20,14 @@
   --font-sans: 'Archia', system-ui, sans-serif;
 }
 
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background: linear-gradient(165deg, #f2f3f5 0%, #eef1f8 50%, #f2f3f5 100%);
   min-height: 100vh;
