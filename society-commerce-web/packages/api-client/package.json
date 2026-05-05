@@ -1,0 +1,33 @@
+{
+  "name": "@society-commerce/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./demo-auth": {
+      "types": "./src/demo-auth.ts",
+      "default": "./src/demo-auth.ts"
+    },
+    "./mock-services": {
+      "types": "./src/mock-services.ts",
+      "default": "./src/mock-services.ts"
+    },
+    "./demo-data": {
+      "types": "./src/demo-data.ts",
+      "default": "./src/demo-data.ts"
+    },
+    "./realtime": {
+      "types": "./src/realtime.ts",
+      "default": "./src/realtime.ts"
+    }
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  }
+}

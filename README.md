@@ -1,149 +1,85 @@
-# Lucky Store
+# Society Commerce
 
-A grocery store platform connecting buyers and sellers with real-time order management, flexible delivery options, and monthly tab billing.
+A society/apartment store commerce platform with buyer, seller, and admin frontends backed by a .NET 8 API.
 
-## Setup
+## Project Structure
 
-```bash
-npm install
-npm run dev
+```
+society-commerce-api/    # .NET 8 Web API (PostgreSQL + Redis)
+society-commerce-web/    # SvelteKit monorepo (pnpm workspaces)
+  apps/
+    buyer/               # Customer-facing storefront (:5173)
+    seller/              # Seller dashboard (:5174)
+    admin/               # Admin panel (:5175)
+  packages/
+    api-client/          # Shared API client + SignalR realtime
+    ui/                  # Shared UI component library
+    i18n/                # Internationalization
 ```
 
-Open the URL shown in the terminal (usually `http://localhost:5173`).
+## Prerequisites
 
-The database (SQLite) and seed data are created automatically on first run — no setup needed.
+- **Node.js** >= 22 ([.nvmrc](society-commerce-web/.nvmrc))
+- **pnpm** >= 9
+- **Docker** & **Docker Compose** (for PostgreSQL + Redis)
+- **.NET 8 SDK** (if running API without Docker)
 
-## Usage
+## Getting Started
 
-1. You'll land on the **login page** — enter any flat number (e.g. `A-101`) to log in with a seeded user, or enter a new one to register
-2. Browse products, add to cart, place orders
-3. Use the bottom nav to access **Routines**, **Orders**, and **Tab**
-4. Admin dashboard is at `/admin`
-
-## Build & Deploy
+### 1. Start the API (Docker — recommended)
 
 ```bash
-npm run build
-node build/index.js
+cd society-commerce-api
+docker compose up -d
 ```
 
-Set `PORT` env var to change the default port (3000):
+This spins up **PostgreSQL**, **Redis**, and the **.NET API** on `http://localhost:5000`.
+
+To seed the database:
 
 ```bash
-PORT=8080 node build/index.js
+# Connect to the running postgres container and run the seed script
+docker compose exec postgres psql -U sc_dev -d society_commerce -f /dev/stdin < seed.sql
 ```
 
-## Quick Hosting (for testing)
-
-The easiest way to share it with others for testing:
-
-### ngrok (expose localhost)
+#### Running API without Docker
 
 ```bash
-npm run dev
-# In another terminal:
-ngrok http 5173
+cd society-commerce-api
+# Make sure PostgreSQL and Redis are running locally
+# Connection config is in src/SocietyCommerce.Api/appsettings.json
+dotnet run --project src/SocietyCommerce.Api
 ```
 
-Gives you a public URL like `https://xxxx.ngrok-free.app` — share it with anyone.
-
-Install ngrok: `nix-shell -p ngrok` or from [ngrok.com](https://ngrok.com)
-
-### Cloudflare Tunnel (no account needed)
+### 2. Start the Web Frontend
 
 ```bash
-npm run dev
-# In another terminal:
-cloudflared tunnel --url http://localhost:5173
+cd society-commerce-web
+pnpm install
 ```
 
-Gives you a temporary public `https://xxxx.trycloudflare.com` URL.
-
-Install: `nix-shell -p cloudflared`
-
-### Local network
+Then run whichever app you need:
 
 ```bash
-npm run dev -- --host
+pnpm dev:buyer    # http://localhost:5173
+pnpm dev:seller   # http://localhost:5174
+pnpm dev:admin    # http://localhost:5175
 ```
 
-This exposes the server on your local network. Other devices on the same WiFi can access it via your IP (shown in the terminal), e.g. `http://192.168.1.5:5173`.
+Or build all apps:
 
-## Tech
+```bash
+pnpm build
+```
 
-- SvelteKit + Svelte 5
-- SQLite (better-sqlite3)
-- Tailwind CSS v4
-- Archia font (self-hosted)
+## API Configuration
 
----
+Default dev config is in `society-commerce-api/src/SocietyCommerce.Api/appsettings.json`. For production, override via environment variables:
 
-## Roles
+| Setting | Env Var | Dev Default |
+|---|---|---|
+| DB connection | `ConnectionStrings__Default` | `Host=localhost;...Password=sc_dev_pass` |
+| Redis | `ConnectionStrings__Redis` | `localhost:6379` |
+| JWT secret | `Jwt__Secret` | `dev-secret-key-min-32-characters-long-here` |
 
-### Buyer
-
-#### Shopping
-- Browse and search for grocery products
-- Add items to cart
-- Mark items as favourites for quick access
-
-#### Routines (Recurring Orders)
-- Set up recurring/scheduled orders (e.g., milk every morning)
-- Manage and edit active routines
-
-#### Ordering & Delivery Options
-When placing an order, the buyer can choose from:
-- **Urgent** — ASAP delivery
-- **Scheduled** — Deliver before a specified time (e.g., before 6 PM)
-- **Pickup** — Seller packs the order; buyer picks it up from the shop
-
-#### Order Tracking
-- Track the status of current orders in real-time
-- View full order history
-
-#### Monthly Tab
-- Orders accumulate on a monthly tab instead of paying per-order
-- View current tab total and breakdown at any time
-
-#### Stock Confirmation
-- Items with known stock are available immediately
-- Items marked as "infinite" stock by the seller require confirmation — the buyer is notified that their order is waiting for seller confirmation before processing
-
-#### Other
-- Login / Logout
-- Print orders or receipts
-- Username format: `B3_804`
-
----
-
-### Seller
-
-#### Shop Setup
-- Register a new shop on the platform
-- Manage shop profile
-
-#### Inventory Management
-- Add, edit, and remove products using reactive forms
-- Product fields: **name**, **price**, **company**, **classification**
-- Classify and categorise products into groups
-- **Stock modes:**
-  - **Known quantity** — Seller specifies the count (e.g., 100 units of milk); stock deducts automatically with each order
-  - **Infinite** — For items the seller can't easily track (e.g., coffee sachets, juice); orders for these items require manual seller confirmation before processing
-- Apply discounts using percentage
-
-#### Orders
-- View all incoming orders sorted in a dashboard
-- Full order tracking with status updates
-- Send notifications to buyers at each stage:
-  - Packed
-  - Out for delivery
-  - Ready for pickup
-- Delivery confirmation upon completion
-
-#### Roles & Staff
-- Assign roles: **Main Seller**, **Delivery Boy**
-- Manage staff and their permissions
-
-#### Database
-- Full data management for products, orders, and staff
-- Everything is manageable: roles, inventory, pricing
+**Never use the dev defaults in production.** Set real secrets via environment variables or a secrets manager.

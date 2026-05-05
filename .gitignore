@@ -1,24 +1,46 @@
 # dependencies
-/node_modules
+node_modules/
 
-# sveltekit
-/.svelte-kit
-/build
+# build output
+.next/
+.svelte-kit/
+build/
+dist/
+.output/
+.vercel/
+.cloudflare/
 
-# misc
-.DS_Store
-*.pem
+# env files
+.env
+.env.*
+!.env.example
+
+# databases
+*.db
+*.db-wal
+*.db-shm
+dump.rdb
 
 # debug
 npm-debug.log*
+*.log
 
-# env files
-.env*
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
 
 # typescript
 *.tsbuildinfo
 
-# sqlite
-*.db
-*.db-wal
-*.db-shm
+# keys
+*.pem
+
+# AI assistant config
+CLAUDE.md
+AGENTS.md
+.claude/

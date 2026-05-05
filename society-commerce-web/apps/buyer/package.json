@@ -1,0 +1,32 @@
+{
+  "name": "@society-commerce/buyer",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --port 5173",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "svelte-check --tsconfig ./tsconfig.json",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@microsoft/signalr": "^8.0.0",
+    "@society-commerce/api-client": "workspace:*",
+    "@society-commerce/i18n": "workspace:*",
+    "@society-commerce/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-cloudflare": "^4.0.0",
+    "@sveltejs/kit": "^2.8.0",
+    "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0",
+    "vitest": "^2.1.0"
+  }
+}

@@ -1,0 +1,39 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+project.lock.json
+*.nuget.props
+*.nuget.targets
+packages/
+
+## IDE
+.idea/
+.vscode/
+*.swp
+
+## Build
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## User-specific
+appsettings.Development.json
+appsettings.Local.json
+
+## Docker
+.env
+
+## OS
+.DS_Store
+Thumbs.db

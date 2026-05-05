@@ -1,0 +1,26 @@
+{
+  "name": "society-commerce-web",
+  "private": true,
+  "scripts": {
+    "dev:buyer": "pnpm --filter=buyer dev",
+    "dev:seller": "pnpm --filter=seller dev",
+    "dev:admin": "pnpm --filter=admin dev",
+    "build": "pnpm -r run build",
+    "build:buyer": "pnpm --filter=buyer build",
+    "build:seller": "pnpm --filter=seller build",
+    "build:admin": "pnpm --filter=admin build",
+    "lint": "pnpm -r run lint",
+    "typecheck": "pnpm -r run typecheck",
+    "test": "pnpm -r run test",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.4.0",
+    "prettier-plugin-svelte": "^3.3.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}

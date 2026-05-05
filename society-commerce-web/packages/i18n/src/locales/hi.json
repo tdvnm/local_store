@@ -1,0 +1,30 @@
+{
+  "common.button.confirm": "पुष्टि करें",
+  "common.button.cancel": "रद्द करें",
+  "common.button.save": "सहेजें",
+  "common.error.network": "नेटवर्क त्रुटि। कृपया पुनः प्रयास करें।",
+  "common.loading": "लोड हो रहा है...",
+
+  "auth.login.title": "लॉगिन",
+  "auth.login.phone_label": "फ़ोन नंबर",
+  "auth.login.request_otp": "OTP प्राप्त करें",
+  "auth.login.verify_otp": "OTP सत्यापित करें",
+
+  "nav.home": "होम",
+  "nav.cart": "कार्ट",
+  "nav.orders": "ऑर्डर",
+  "nav.profile": "प्रोफ़ाइल",
+
+  "home.shops_title": "दुकानें",
+
+  "product.in_stock": "स्टॉक में",
+  "product.usually_available": "आमतौर पर उपलब्ध",
+  "product.out_of_stock": "स्टॉक में नहीं",
+  "product.add": "जोड़ें",
+
+  "cart.place_order": "ऑर्डर दें • COD {amount}",
+
+  "order.status.confirmed": "पुष्टि हुई",
+  "order.status.awaiting_confirmation": "पुष्टि का इंतज़ार",
+  "order.status.completed": "डिलीवर हो गया"
+}
